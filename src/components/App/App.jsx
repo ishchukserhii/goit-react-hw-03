@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import ContactList from '../ContactList/ContactList'
+import SearchBox from '../SearchBox/SearchBox'
 
 function App() {
 const [contacts, setContacts] = useState(
@@ -11,13 +12,19 @@ const [contacts, setContacts] = useState(
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
   ]
 )
-
+const [inputValue, setInputValue] = useState("");
+const handleChange = (evt) => {
+  setInputValue(evt.target.value);
+};
+const Filter = contacts.filter(contact =>
+  contact.name.toLowerCase().includes(inputValue.toLowerCase())
+);
   return (
 <div>
   <h1>Phonebook</h1>
   {/* <ContactForm /> */}
-  {/* <SearchBox /> */}
-  <ContactList contacts={contacts}/>
+  <SearchBox inputValue={inputValue} changeInput={handleChange}/>
+  <ContactList Filter={Filter}/>
 </div>
 
   )

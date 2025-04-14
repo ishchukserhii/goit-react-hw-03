@@ -1,12 +1,10 @@
 import React from 'react'
 
-const SearchBox = ({ value, onFilter }) => {
+const SearchBox = ({inputValue, changeInput}) => {
+ 
 
-    const handleChange = (event) => {
-        onFilter(event.target.value);
-    };
   return (
-    <><input type="text" value={value} onChange={handleChange}/></>
+    <><input type="text" value={inputValue} onChange={changeInput}/></>
   )
 }
 

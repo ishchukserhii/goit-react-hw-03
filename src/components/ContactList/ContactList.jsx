@@ -1,11 +1,11 @@
 import React from 'react'
 import Contact from '../Contact/Contact';
 
-const ContactList = ({contacts}) => {
+const ContactList = ({Filter}) => {
 
   return (
     <ul>
-      {contacts.map(contact => (
+      {Filter.map(contact => (
         <li key={contact.id}>
           <Contact name={contact.name} phone={contact.number}/>
         </li>
