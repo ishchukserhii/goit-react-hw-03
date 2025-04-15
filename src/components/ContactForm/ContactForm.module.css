@@ -1,22 +1,16 @@
-.box{
-    display: flex;
-    border: 1px solid;
-    border-radius: 5px;
-    height: 100px;
-    width: 400px;
-    justify-content: space-between;
-    align-items: center;
-    align-content: start;
-    margin: 20px;
+.box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  border-radius: 5px;
+  height: 200px;
+  width: 400px;
+  justify-content: space-between;
+  align-items: center;
+  align-content: start;
+  margin: 20px;
 }
-.button{
-    height: 50px;
-    margin-right: 10px;
-}
-.list{
-    padding:20px;
-}
-.item{
-    justify-self: start;
-    padding: 5px;
+.buttom {
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
