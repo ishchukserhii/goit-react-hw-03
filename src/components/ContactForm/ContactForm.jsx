@@ -15,17 +15,17 @@ const UserSchema = Yup.object().shape({
     .required("This field is required"),
   number: Yup.string()
     .required("This field is required")
-    .matches(/^\d+$/, "Must be a valid number")
+    .matches(/^\+?[0-9-]+$/, "Must be a valid number")
     .min(3, "Must be at least 3 digits")
     .max(50, "Must be at most 50 digits"),
 });
 
-const ContactForm = ({onAdd}) => {
+const ContactForm = ({ onAdd }) => {
   const handleSubmit = (values, actions) => {
     const newContact = {
       id: nanoid(),
-      ...values
-    }
+      ...values,
+    };
     onAdd(newContact);
     actions.resetForm();
   };
@@ -39,13 +39,15 @@ const ContactForm = ({onAdd}) => {
       onSubmit={handleSubmit}
     >
       <Form className={css.box}>
-        <label>Name</label>
+        <label className={css.label}>Name</label>
         <Field type="text" name="name" />
         <ErrorMessage name="name" component="span" />
-        <label>Number</label>
+        <label className={css.label}>Number</label>
         <Field type="tel" name="number" />
         <ErrorMessage name="number" component="span" />
-        <button className={css.buttom} type="submit">Add contact</button>
+        <button className={css.buttom} type="submit">
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
