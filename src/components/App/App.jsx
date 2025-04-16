@@ -5,6 +5,13 @@ import SearchBox from '../SearchBox/SearchBox'
 import ContactForm from '../ContactForm/ContactForm'
 
 function App() {
+
+  const addUser = (newUser) => {
+    setContacts((contacts) => [...contacts, newUser])
+  };
+const delUser =(id)=>{
+ setContacts(contacts => contacts.filter( contact => contact.id !== id))
+}
 const [contacts, setContacts] = useState(
   [
     {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
@@ -23,9 +30,9 @@ const Filter = contacts.filter(contact =>
   return (
 <div>
   <h1>Phonebook</h1>
-  <ContactForm />
+  <ContactForm onAdd={addUser}/>
   <SearchBox inputValue={inputValue} changeInput={handleChange}/>
-  <ContactList Filter={Filter}/>
+  <ContactList Filter={Filter} delUser={delUser}/>
 </div>
 
   )

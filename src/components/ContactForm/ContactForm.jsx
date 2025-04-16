@@ -2,6 +2,7 @@ import React from "react";
 import css from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { nanoid } from "nanoid";
 
 const UserSchema = Yup.object().shape({
   name: Yup.string()
@@ -19,25 +20,32 @@ const UserSchema = Yup.object().shape({
     .max(50, "Must be at most 50 digits"),
 });
 
-const ContactForm = () => {
+const ContactForm = ({onAdd}) => {
+  const handleSubmit = (values, actions) => {
+    const newContact = {
+      id: nanoid(),
+      ...values
+    }
+    onAdd(newContact);
+    actions.resetForm();
+  };
   return (
     <Formik
       initialValues={{
-        id: "",
         name: "",
         number: "",
       }}
       validationSchema={UserSchema}
-      // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <Form className={css.box}>
-        <label htmlFor="Name">Name</label>
+        <label>Name</label>
         <Field type="text" name="name" />
         <ErrorMessage name="name" component="span" />
-        <label htmlFor="Number">Number</label>
+        <label>Number</label>
         <Field type="tel" name="number" />
         <ErrorMessage name="number" component="span" />
-        <button className={css.buttom}>Add contact</button>
+        <button className={css.buttom} type="submit">Add contact</button>
       </Form>
     </Formik>
   );

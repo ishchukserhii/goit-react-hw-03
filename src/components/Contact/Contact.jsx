@@ -3,7 +3,7 @@ import css from './Contact.module.css'
 import { FaUser } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa6";
 
-const Contact = ({name, phone}) => {
+const Contact = ({name, phone, delUser, id}) => {
   return (
     <div className={css.box}>
         <ul className={css.list}>
@@ -11,7 +11,7 @@ const Contact = ({name, phone}) => {
             <li className={css.item}><FaPhone /> {phone}</li>
             
         </ul>
-        <button className={css.button}>Delete</button>
+        <button className={css.button} onClick={() => delUser(id)}>Delete</button>
     </div>
   )
 }
